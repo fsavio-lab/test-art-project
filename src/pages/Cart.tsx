@@ -39,7 +39,7 @@ const Cart = () => {
             <div className="space-y-6">
               {items.map((item) => (
                 <div key={item.id} className="flex gap-6 border border-border bg-card p-4 shadow-warm">
-                  <Link to={`/marketplace/${item.id}`} className="h-28 w-28 flex-shrink-0 overflow-hidden">
+                  <Link to={`/marketplace/${item.id}`} className="h-28 w-28 shrink-0 overflow-hidden">
                     <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
                   </Link>
                   <div className="flex flex-1 flex-col justify-between">

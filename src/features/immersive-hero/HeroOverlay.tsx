@@ -69,7 +69,7 @@ const HeroOverlay = () => {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="h-8 w-px bg-gradient-to-b from-primary/50 to-transparent"
+          className="h-8 w-px bg-linear-to-brom-primary/50 to-transparent"
         />
       </motion.div>
     </section>
