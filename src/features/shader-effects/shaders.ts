@@ -27,6 +27,7 @@ export const heroFragmentShader = `
   uniform vec2 uMouse;
   uniform float uScroll;
   uniform vec2 uResolution;
+  uniform float uTheme;
   
   vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
   vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
@@ -121,16 +122,28 @@ export const heroFragmentShader = `
     vec3 softBeige = vec3(0.953, 0.929, 0.894);
     vec3 mutedGold = vec3(0.69, 0.553, 0.341);
     vec3 burntSaffron = vec3(0.773, 0.416, 0.176);
-    
-    vec3 color = warmIvory;
-    color = mix(color, softBeige, smoothstep(0.2, 0.5, combinedNoise));
-    color = mix(color, mutedGold, smoothstep(0.55, 0.8, combinedNoise) * 0.2);
+
+    // DARK PALETTE (Museum Night)
+    vec3 darkCharcoal = vec3(0.07, 0.07, 0.09);
+    vec3 deepCharcoal = vec3(0.1, 0.1, 0.12);
+    vec3 darkGold = vec3(0.55, 0.45, 0.28);
+    vec3 warmAmber = vec3(0.8, 0.5, 0.2);
+
+    // Blend palettes
+    vec3 baseLight = mix(warmIvory, softBeige, smoothstep(0.2, 0.5, combinedNoise));
+    vec3 baseDark = mix(darkCharcoal, deepCharcoal, smoothstep(0.2, 0.6, combinedNoise));
+
+    vec3 color = mix(baseLight, baseDark, uTheme);
+    // color = mix(color, softBeige, smoothstep(0.2, 0.5, combinedNoise));
+    // color = mix(color, mutedGold, smoothstep(0.55, 0.8, combinedNoise) * 0.2);
     
     // Saffron-tinted warm light
     float highlight = pow(combinedNoise, 4.0) * 0.4;
     highlight += mouseInfluence * 1.2;
-    color += burntSaffron * highlight * 0.2;
-    color += mutedGold * highlight * 0.15;
+    vec3 highlightLight = burntSaffron * 0.2 + mutedGold * 0.15;
+    vec3 highlightDark = warmAmber * 0.25 + darkGold * 0.2;
+
+    color += mix(highlightLight, highlightDark, uTheme) * highlight;
     
     // Warm volumetric light ray
     float lightRay = smoothstep(0.0, 1.0, 1.0 - abs(uv.x - 0.55 + sin(uTime * 0.08) * 0.12));
@@ -147,7 +160,8 @@ export const heroFragmentShader = `
     
     // Radial warmth vignette
     float vignette = 1.0 - smoothstep(0.35, 1.1, length(uv - 0.5));
-    color *= vignette * 0.12 + 0.88;
+    float vignetteStrength = mix(0.12, 0.25, uTheme);
+    color *= vignette * vignetteStrength + (1.0 - vignetteStrength);
     
     // Cinematic tone mapping (ACES-inspired)
     color = color * (2.51 * color + 0.03) / (color * (2.43 * color + 0.59) + 0.14);

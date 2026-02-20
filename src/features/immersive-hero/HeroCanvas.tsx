@@ -47,8 +47,8 @@ const HeroCanvas = () => {
         <pointLight position={[-2, -1, 1]} intensity={0.3} color="#b08d57" />
         <Suspense fallback={null}>
           <ShaderBackground mouse={mouse} scroll={scroll} />
-          <FluidSculpture mouse={mouse} scroll={scroll} />
-          <LogoParticles />
+          {/* <FluidSculpture mouse={mouse} scroll={scroll} /> */}
+          {/* <LogoParticles /> */}
         </Suspense>
       </Canvas>
     </div>

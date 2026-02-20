@@ -1,6 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useTheme } from "next-themes";
 import { heroVertexShader, heroFragmentShader } from '../shader-effects/shaders';
 
 interface ShaderBackgroundProps {
@@ -11,6 +12,8 @@ interface ShaderBackgroundProps {
 const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const { viewport } = useThree();
+  const { theme, resolvedTheme } = useTheme();
+  const isDark = (theme || resolvedTheme) === "dark";
 
   const uniforms = useMemo(
     () => ({
@@ -18,6 +21,7 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uScroll: { value: 0 },
       uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      uTheme: { value: 0 }, // 0 = light, 1 = dark
     }),
     []
   );
@@ -31,6 +35,7 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
       mouse.current.y * 0.5 + 0.5
     );
     material.uniforms.uScroll.value = scroll;
+    material.uniforms.uTheme.value = isDark ? 1 : 0;
   });
 
   return (
