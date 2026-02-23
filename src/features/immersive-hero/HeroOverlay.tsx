@@ -15,7 +15,7 @@ const HeroOverlay = () => {
           transition={{ duration: 2, delay: 0.3 }}
           className="mb-6 font-body text-xs uppercase tracking-[0.5em] text-primary/70"
         >
-          Premium Digital Exhibition
+          Premium Art Gallery
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -38,8 +38,7 @@ const HeroOverlay = () => {
           transition={{ duration: 1, delay: 1.5 }}
           className="mt-8 max-w-md font-body text-sm leading-relaxed text-muted-foreground"
         >
-          Celebrating Indian artistic heritage through immersive technology —
-          from Madhubani to Mughal miniatures, temple murals to contemporary masters.
+          From striking contemporary masterpieces to refined modern expressions, our gallery celebrates art that inspires, elevates, and endures. Discover investment-worthy paintings in an intimate, sophisticated setting designed for those who value rarity, authenticity, and uncompromising quality.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -48,10 +47,10 @@ const HeroOverlay = () => {
           className="mt-12"
         >
           <a
-            href="#collection"
+            href="/marketplace"
             className="inline-block border border-primary/30 px-8 py-3 font-body text-xs uppercase tracking-[0.3em] text-primary transition-all duration-500 hover:border-primary/60 hover:bg-primary/5"
           >
-            Enter Exhibition
+            Enter Marketplace
           </a>
         </motion.div>
       </motion.div>
@@ -63,7 +62,7 @@ const HeroOverlay = () => {
         transition={{ delay: 3, duration: 1 }}
         className="absolute bottom-12 flex flex-col items-center gap-3"
       >
-        <span className="font-body text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+        <span className="font-bold text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
           Scroll
         </span>
         <motion.div

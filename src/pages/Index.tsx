@@ -21,7 +21,7 @@ const Index = () => {
       </Suspense>
 
       {/* Grain overlay */}
-      <div className="grain-overlay fixed inset-0 z-[1] pointer-events-none" />
+      <div className="grain-overlay fixed inset-0 z-1 pointer-events-none" />
 
       <Navigation />
       <HeroOverlay />

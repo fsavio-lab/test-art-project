@@ -8,9 +8,11 @@ import { useCart } from '@/features/shared/context/CartContext';
 const navLinks = [
   { label: 'Marketplace', href: '/marketplace' },
   { label: 'Exhibitions', href: '/exhibitions' },
+  { label: 'Prints', href: '/prints' },
+  { label: 'Fine Art', href: '/fine_art' },
   { label: 'Artists', href: '/artists' },
   { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  // { label: 'Contact', href: '/contact' },
 ];
 
 const Navigation = () => {
