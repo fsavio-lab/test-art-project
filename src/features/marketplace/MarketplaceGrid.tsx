@@ -5,12 +5,16 @@ import { SlidersHorizontal, X } from 'lucide-react';
 
 type SortOption = 'price-asc' | 'price-desc' | 'newest' | 'popular';
 
-const categories = ['all', 'painting', 'sculpture', 'photography'];
+const categories = ['all', 'fine-art', 'prints'];
 const sizes = ['all', 'small', 'medium', 'large'];
 const orientations = ['all', 'landscape', 'portrait', 'square'];
 const availabilities = ['all', 'available', 'sold', 'reserved'];
 
-const MarketplaceGrid = () => {
+interface MarketplaceGridProps {
+  categoryFilter?: string;
+}
+
+const MarketplaceGrid = ({ categoryFilter }: MarketplaceGridProps = {}) => {
   const [sort, setSort] = useState<SortOption>('popular');
   const [category, setCategory] = useState('all');
   const [size, setSize] = useState('all');
@@ -29,7 +33,8 @@ const MarketplaceGrid = () => {
 
   const filtered = useMemo(() => {
     let result = paintings.filter((p) => {
-      if (category !== 'all' && p.category !== category) return false;
+      if (categoryFilter && p.category !== categoryFilter) return false;
+      if (!categoryFilter && category !== 'all' && p.category !== category) return false;
       if (size !== 'all' && p.size !== size) return false;
       if (orientation !== 'all' && p.orientation !== orientation) return false;
       if (availability !== 'all' && p.availability !== availability) return false;
@@ -48,7 +53,7 @@ const MarketplaceGrid = () => {
     });
 
     return result;
-  }, [sort, category, size, orientation, availability, priceRange]);
+  }, [sort, category, size, orientation, availability, priceRange, categoryFilter]);
 
   const activeFilterCount = [category, size, orientation, availability].filter((f) => f !== 'all').length +
     (priceRange[0] > 0 || priceRange[1] < 50000 ? 1 : 0);

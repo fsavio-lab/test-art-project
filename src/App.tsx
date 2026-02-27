@@ -17,6 +17,8 @@ const Contact = lazy(() => import("./pages/Contact"));
 const About = lazy(() => import("./pages/About"));
 const Artists = lazy(() => import("./pages/Artists"));
 const ArtistProfile = lazy(() => import("./pages/ArtistProfile"));
+const FineArt = lazy(() => import("./pages/FineArt"));
+const Prints = lazy(() => import("./pages/Prints"));
 
 const queryClient = new QueryClient();
 
@@ -39,7 +41,8 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/marketplace" element={<Marketplace />} />
                 <Route path="/marketplace/:id" element={<ArtDetail />} />
-                <Route path="/prints" element={<div>Prints</div>} />
+                <Route path="/prints" element={<Prints />} />
+                <Route path="/fine_art" element={<FineArt />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/exhibitions" element={<Exhibitions />} />
                 <Route path="/contact" element={<Contact />} />
