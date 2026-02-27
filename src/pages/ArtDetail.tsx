@@ -4,7 +4,8 @@ import { artists } from '@/features/shared/data/artists';
 import { useCart } from '@/features/shared/context/CartContext';
 import Navigation from '@/features/navigation/Navigation';
 import PaintingCard from '@/features/marketplace/PaintingCard';
-import { ArrowLeft, Heart, Share2, ShoppingCart, Check, Star } from 'lucide-react';
+import InquiryDialog from '@/features/shared/components/InquiryDialog';
+import { ArrowLeft, Heart, Share2, ShoppingCart, Check, Star, MessageSquare } from 'lucide-react';
 import { useState, useCallback } from 'react';
 
 const reviews = [
@@ -18,6 +19,7 @@ const ArtDetail = () => {
   const { addItem } = useCart();
   const [zoomed, setZoomed] = useState(false);
   const [wishlisted, setWishlisted] = useState(false);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
 
   const painting = paintings.find((p) => p.id === id);
   const artist = painting ? artists.find((a) => a.id === painting.artistId) : undefined;
@@ -89,6 +91,12 @@ const ArtDetail = () => {
                 Buy Now
               </Link>
               <button
+                onClick={() => setInquiryOpen(true)}
+                className="flex items-center gap-2 border border-primary/30 px-6 py-3 font-body text-xs uppercase tracking-[0.2em] text-primary transition-all duration-300 hover:border-primary hover:bg-primary/5"
+              >
+                <MessageSquare size={14} /> Inquire
+              </button>
+              <button
                 onClick={() => setWishlisted(!wishlisted)}
                 className={`border p-3 transition-all duration-300 ${wishlisted ? 'border-primary bg-primary/5 text-primary' : 'border-border text-muted-foreground hover:border-primary hover:text-primary'}`}
                 aria-label="Add to wishlist"
@@ -102,13 +110,15 @@ const ArtDetail = () => {
 
             <div className="mt-10 space-y-3 border-t border-border pt-6">
               {[
+                ["Title", painting.title],
                 ['Medium', painting.medium],
                 ['Dimensions', painting.dimensions],
                 ['Year', painting.year],
                 ['Style', painting.style],
-                ['Framing', painting.framing],
-                ['Certificate', painting.certificate ? 'Certificate of Authenticity included' : 'Not included'],
-                ['Shipping', painting.shipping],
+                ["Art Piece Type", painting.art_piece_type.charAt(0).toUpperCase() + painting.art_piece_type.slice(1)]
+                // ['Framing', painting.framing],
+                // ['Certificate', painting.certificate ? 'Certificate of Authenticity included' : 'Not included'],
+                // ['Shipping', painting.shipping],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between">
                   <span className="font-body text-xs uppercase tracking-[0.15em] text-muted-foreground">{label}</span>
@@ -163,6 +173,13 @@ const ArtDetail = () => {
           </section>
         )}
       </main>
+
+      <InquiryDialog
+        open={inquiryOpen}
+        onOpenChange={setInquiryOpen}
+        artworkTitle={painting.title}
+        artworkId={painting.id}
+      />
     </div>
   );
 };
