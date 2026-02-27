@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const ContactSection = () => {
   const ref = useRef<HTMLElement>(null);
@@ -25,15 +27,6 @@ const ContactSection = () => {
             Our curators are available to guide you through the collection.
           </p>
 
-          <div className="mt-12 space-y-4">
-            <p className="font-body text-xs uppercase tracking-[0.3em] text-foreground/70">
-              info@indiafineart.com
-            </p>
-            <p className="font-body text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              42 MG Road, Fort, Mumbai 400001, India
-            </p>
-          </div>
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
@@ -51,24 +44,64 @@ const ContactSection = () => {
       </div>
 
       {/* Footer */}
-      <div className="mx-auto mt-32 max-w-6xl border-t border-border/30 pt-8">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <span className="font-display text-sm font-light tracking-wider text-muted-foreground">
-            INDIA FINE ART © 2024
-          </span>
-          <div className="flex gap-8">
-            {['Instagram', 'Twitter', 'Newsletter'].map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="font-body text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link}
-              </a>
-            ))}
+      <footer className="mx-auto mt-32 max-w-6xl border-t border-border/30 pt-10">
+        <div className="grid gap-10 md:grid-cols-2">
+          {/* Left — Brand + Links */}
+          <div>
+            <Link to="/" className="font-display text-lg font-light tracking-wider text-foreground">
+              INDIA FINE ART
+            </Link>
+            <p className="mt-3 max-w-xs font-body text-sm leading-relaxed text-muted-foreground">
+              Celebrating Indian artistic heritage through immersive technology and curated exhibitions.
+            </p>
+            <div className="mt-6 flex gap-8">
+              {['Instagram', 'Twitter'].map((link) => (
+                <a
+                  key={link}
+                  href="#"
+                  className="font-body text-[10px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
           </div>
+
+          {/* Right — Contact Details */}
+          <address className="not-italic">
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <MapPin size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
+                <p className="font-body text-sm text-foreground">42 MG Road, Fort, Mumbai 400001, India</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
+                <a href="tel:+912222047890" className="font-body text-sm text-foreground transition-colors hover:text-primary">
+                  +91 22 2204 7890
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
+                <a href="mailto:info@indiafineart.com" className="font-body text-sm text-foreground transition-colors hover:text-primary">
+                  info@indiafineart.com
+                </a>
+              </div>
+              <div className="flex items-start gap-3">
+                <Clock size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
+                <p className="font-body text-sm text-foreground">
+                  Tue – Sat: 10:00 – 19:00 · Sun: 12:00 – 17:00
+                </p>
+              </div>
+            </div>
+          </address>
         </div>
-      </div>
+
+        <div className="mt-10 border-t border-border/20 pt-6 text-center">
+          <span className="font-body text-xs text-muted-foreground">
+            © {new Date().getFullYear()} India Fine Art. All rights reserved.
+          </span>
+        </div>
+      </footer>
     </section>
   );
 };
