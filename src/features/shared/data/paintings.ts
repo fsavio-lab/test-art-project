@@ -16,7 +16,7 @@ export interface Painting {
   dimensions: string;
   year: string;
   style: string;
-  category: string;
+  category: "fine-art" | "prints";
   orientation: 'landscape' | 'portrait' | 'square';
   size: 'small' | 'medium' | 'large';
   availability: 'available' | 'sold' | 'reserved';
@@ -41,7 +41,7 @@ export const paintings: Painting[] = [
     dimensions: '120 × 90 cm',
     year: '2024',
     style: 'Tanjore Painting',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'landscape',
     size: 'large',
     availability: 'available',
@@ -64,7 +64,7 @@ export const paintings: Painting[] = [
     dimensions: '100 × 80 cm',
     year: '2024',
     style: 'Warli Folk Art',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'portrait',
     size: 'medium',
     availability: 'available',
@@ -87,7 +87,7 @@ export const paintings: Painting[] = [
     dimensions: '150 × 120 cm',
     year: '2023',
     style: 'Pattachitra',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'landscape',
     size: 'large',
     availability: 'available',
@@ -110,7 +110,7 @@ export const paintings: Painting[] = [
     dimensions: '45 × 35 cm',
     year: '2024',
     style: 'Mughal Miniature',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'portrait',
     size: 'small',
     availability: 'reserved',
@@ -133,7 +133,7 @@ export const paintings: Painting[] = [
     dimensions: '80 × 60 cm',
     year: '2023',
     style: 'Madhubani (Mithila)',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'portrait',
     size: 'medium',
     availability: 'available',
@@ -156,7 +156,7 @@ export const paintings: Painting[] = [
     dimensions: '200 × 120 cm',
     year: '2024',
     style: 'Kalamkari',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'landscape',
     size: 'large',
     availability: 'available',
@@ -179,7 +179,7 @@ export const paintings: Painting[] = [
     dimensions: '55 × 40 cm',
     year: '2024',
     style: 'Rajasthani Miniature',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'portrait',
     size: 'small',
     availability: 'available',
@@ -202,7 +202,7 @@ export const paintings: Painting[] = [
     dimensions: '70 × 50 cm',
     year: '2024',
     style: 'Gond Art',
-    category: 'painting',
+    category: 'fine-art',
     orientation: 'portrait',
     size: 'small',
     availability: 'sold',
