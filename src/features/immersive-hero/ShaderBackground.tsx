@@ -75,10 +75,10 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
   // 🔥 Load image texture
   const texture = useLoader(TextureLoader, heroImage);
 
-  texture.colorSpace = THREE.SRGBColorSpace;
-  // texture.flipY = false;
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.colorSpace = THREE.SRGBColorSpace;
+  // texture.flipY = false;
   texture.needsUpdate = true;
 
   const uniforms = useMemo(
@@ -88,7 +88,7 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
       uScroll: { value: 0 },
       uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
       uTheme: { value: 0 },
-      uTexture: { value: texture }, 
+      uTexture: { value: texture },
     }),
     [texture]
   );
