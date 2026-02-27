@@ -95,12 +95,12 @@ interface ShaderBackgroundProps {
 //       size.height
 //     );
 
-//     // // 🔥 Smooth theme interpolation
-//     const current = material.uniforms.uTheme.value;
-//     const target = themeTarget.current;
+    // // // 🔥 Smooth theme interpolation
+    // const current = material.uniforms.uTheme.value;
+    // const target = themeTarget.current;
 
-//     material.uniforms.uTheme.value +=
-//       (target - current) * 0.06;
+    // material.uniforms.uTheme.value +=
+    //   (target - current) * 0.06;
 //   });
 
 //   return (
@@ -124,6 +124,7 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
   const { viewport } = useThree();
   const { theme, resolvedTheme } = useTheme();
   const isDark = (theme || resolvedTheme) === "dark";
+  const themeTarget = useRef(0);
 
   // 🔥 Load image texture
   const texture = useLoader(TextureLoader, heroImage);
@@ -133,6 +134,11 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
   texture.needsUpdate = true;
+
+  //   // // Update theme target when toggled
+  useEffect(() => {
+    themeTarget.current = isDark ? 1 : 0;
+  }, [isDark]);
 
   useEffect(() => {
     if (!meshRef.current || !texture.image) return;
@@ -182,6 +188,12 @@ const ShaderBackground = ({ mouse, scroll }: ShaderBackgroundProps) => {
     );
     material.uniforms.uScroll.value = scroll;
     material.uniforms.uTheme.value = isDark ? 1 : 0;
+    // // 🔥 Smooth theme interpolation
+    const current = material.uniforms.uTheme.value;
+    const target = themeTarget.current;
+
+    material.uniforms.uTheme.value +=
+      (target - current) * 0.06;
   });
 
   return (
