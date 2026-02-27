@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/features/shared/context/CartContext';
+import indiaFineArtLogo from '@/assets/logo/android-chrome-192x192.png';
 
 const navLinks = [
   { label: 'Marketplace', href: '/marketplace' },
@@ -41,12 +42,17 @@ const Navigation = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 bg-background/80 backdrop-blur-md shadow-warm`}
-        // className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
-        //   }`}
+      // className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
+      //   }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
           <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
-            INDIA FINE ART
+            <img
+              src={indiaFineArtLogo}
+              alt="India Fine Art Logo"
+              className="h-full w-16 object-cover transition-transform duration-700 group-hover:scale-105"
+
+            />
           </Link>
 
           {/* Desktop nav */}
