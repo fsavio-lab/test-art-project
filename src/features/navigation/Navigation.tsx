@@ -45,12 +45,12 @@ const Navigation = () => {
       // className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
       //   }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3">
           <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
             <img
               src={indiaFineArtLogo}
               alt="India Fine Art Logo"
-              className="h-full w-16 object-cover transition-transform duration-700 group-hover:scale-105"
+              className="h-16 w-full object-cover transition-transform duration-700 group-hover:scale-105"
 
             />
           </Link>

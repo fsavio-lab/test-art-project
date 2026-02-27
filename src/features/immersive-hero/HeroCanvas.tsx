@@ -33,7 +33,7 @@ const HeroCanvas = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-0 mt-16">
+    <div ref={containerRef} className="fixed inset-0 z-0 mt-8">
       <Canvas
         camera={{ position: [0, 0, 3], fov: 60 }}
         dpr={[1, 1.5]}
