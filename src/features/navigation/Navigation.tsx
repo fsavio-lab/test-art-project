@@ -40,9 +40,8 @@ const Navigation = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${
-          isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
-        }`}
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
+          }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
           <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
@@ -55,14 +54,12 @@ const Navigation = () => {
               <Link
                 key={link.label}
                 to={link.href}
-                className={`group relative font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:text-foreground ${
-                  location.pathname === link.href ? 'text-foreground' : 'text-muted-foreground'
-                }`}
+                className={`group relative font-body text-xs uppercase tracking-[0.25em] transition-colors duration-300 hover:text-foreground ${location.pathname === link.href ? 'text-foreground' : 'text-muted-foreground'
+                  }`}
               >
                 {link.label}
-                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${
-                  location.pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
+                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-300 ${location.pathname === link.href ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
               </Link>
             ))}
 
@@ -109,20 +106,42 @@ const Navigation = () => {
             )}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col gap-1.5"
+              className="relative flex h-6 w-6 items-center justify-center"
               aria-label="Toggle menu"
             >
+              {/* Top Line */}
               <motion.span
-                animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
-                className="block h-px w-6 bg-foreground"
+                animate={
+                  menuOpen
+                    ? { rotate: 45, y: 0 }
+                    : { rotate: 0, y: -6 }
+                }
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="absolute h-px w-6 bg-foreground"
+                style={{ transformOrigin: "center" }}
               />
+
+              {/* Middle Line */}
               <motion.span
-                animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-                className="block h-px w-4 bg-foreground"
+                animate={{
+                  opacity: menuOpen ? 0 : 1,
+                  scaleX: menuOpen ? 0.8 : 1
+                }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="absolute h-px w-6 bg-foreground"
+                style={{ transformOrigin: "center" }}
               />
+
+              {/* Bottom Line */}
               <motion.span
-                animate={menuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
-                className="block h-px w-6 bg-foreground"
+                animate={
+                  menuOpen
+                    ? { rotate: -45, y: 0 }
+                    : { rotate: 0, y: 6 }
+                }
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="absolute h-px w-6 bg-foreground"
+                style={{ transformOrigin: "center" }}
               />
             </button>
           </div>
