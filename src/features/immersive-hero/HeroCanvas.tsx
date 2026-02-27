@@ -2,13 +2,13 @@ import { Suspense, useRef, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AdaptiveDpr } from '@react-three/drei';
 import ShaderBackground from './ShaderBackground';
-import LogoParticles from './LogoParticles';
-import FluidSculpture from './FluidSculpture';
+import { useTheme } from 'next-themes';
 
 const HeroCanvas = () => {
   const mouse = useRef({ x: 0, y: 0 });
   const [scroll, setScroll] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -17,12 +17,15 @@ const HeroCanvas = () => {
     };
 
     const handleScroll = () => {
-      const s = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      const s =
+        window.scrollY /
+        (document.body.scrollHeight - window.innerHeight);
       setScroll(Math.min(s, 1));
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('scroll', handleScroll);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('scroll', handleScroll);
@@ -45,10 +48,9 @@ const HeroCanvas = () => {
         <ambientLight intensity={0.5} color="#b08d57" />
         <pointLight position={[2, 3, 2]} intensity={0.7} color="#c56a2d" />
         <pointLight position={[-2, -1, 1]} intensity={0.3} color="#b08d57" />
+
         <Suspense fallback={null}>
           <ShaderBackground mouse={mouse} scroll={scroll} />
-          {/* <FluidSculpture mouse={mouse} scroll={scroll} /> */}
-          {/* <LogoParticles /> */}
         </Suspense>
       </Canvas>
     </div>

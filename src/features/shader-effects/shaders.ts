@@ -116,6 +116,209 @@ export const heroVertexShader = `
 
 // `
 
+
+export const heroFragmentShader = `
+precision highp float;
+
+varying vec2 vUv;
+
+uniform sampler2D uTexture;
+uniform float uTheme;
+
+void main() {
+
+    vec4 tex = texture2D(uTexture, vUv);
+    vec3 color = tex.rgb;
+
+    // -------------------------------------------------
+    // STRONG LIGHT / DARK COMPENSATION
+    // -------------------------------------------------
+
+    vec3 darkened = color * 0.55;
+    vec3 lightened = mix(color, vec3(1.0), 0.25);
+    color = mix(lightened, darkened, uTheme);
+
+    // -------------------------------------------------
+    // Center readability boost (radial light focus)
+    // -------------------------------------------------
+
+    float center = 1.0 - smoothstep(0.0, 0.6, distance(vUv, vec2(0.5)));
+    color += center * (1.0 - uTheme) * 0.15;
+
+    float dist = distance(vUv, vec2(0.5));
+
+    // smooth circular falloff
+    float mask = 1.0 - smoothstep(0.0, 0.8, dist);
+
+    // make it ultra soft
+    mask = pow(mask, 1.5);
+
+    // your glow color (example: warm neutral)
+    vec3 glowColor = mix(vec3(1.0,0.95,0.9), color, uTheme);
+
+    // very low opacity
+    float glowStrength = 0.8;
+
+    // blend glow into image
+    color = mix(color, glowColor, mask * glowStrength);
+
+    gl_FragColor = vec4(color, 1.0);
+}
+`;
+
+// export const heroFragmentShader = `
+// precision highp float;
+
+// varying vec2 vUv;
+
+// uniform sampler2D uTexture;
+// uniform float uTheme;
+
+// void main() {
+
+//     vec3 color = texture2D(uTexture, vUv).rgb;
+
+//     // -------------------------------------------------
+//   // STRONG LIGHT / DARK COMPENSATION
+//   // -------------------------------------------------
+
+//   // Dark mode → cinematic darkening
+//   vec3 darkened = color * 0.55;
+
+//   // Light mode → strong soft white overlay
+//   vec3 lightened = mix(color, vec3(1.0), 0.25);
+
+//   color = mix(lightened, darkened, uTheme);
+
+//   // -------------------------------------------------
+//   // Center readability boost (radial light focus)
+//   // -------------------------------------------------
+//   float center = 1.0 - smoothstep(0.0, 0.6, distance(vUv, vec2(0.5)));
+//   color += center * (1.0 - uTheme) * 0.15;
+
+//   gl_FragColor = vec4(color, 1.0);
+// }
+// `;
+
+// export const heroFragmentShader = `
+//   precision highp float;
+
+//   varying vec2 vUv;
+
+//   uniform sampler2D uTexture;
+//   uniform float uTheme;
+
+//   void main() {
+
+//       vec3 color = texture2D(uTexture, vUv).rgb;
+
+
+//      // ---------------------------------------
+//     // BASIC THEME EXPOSURE
+//     // ---------------------------------------
+
+//     vec3 lightMode = color * 1.25;   // slightly brighter
+//     vec3 darkMode  = color * 0.55;   // darker base
+
+//     color = mix(lightMode, darkMode, uTheme);
+
+//     // ---------------------------------------
+//     // CENTER FOCUS GRADIENT (SOFT RADIAL)
+//     // ---------------------------------------
+
+//     float dist = distance(vUv, vec2(0.5));
+
+//     // smooth center falloff
+//     float centerMask = 1.0 - smoothstep(0.0, 0.75, dist);
+
+//     // Light mode → brighten center
+//     vec3 centerBright = color * 1.15;
+
+//     // Dark mode → darken edges more than center
+//     vec3 edgeDarkened = color * 0.85;
+
+//     vec3 focusedLight = mix(color, centerBright, centerMask * 0.6);
+//     vec3 focusedDark  = mix(edgeDarkened, color, centerMask * 0.5);
+
+//     color = mix(focusedLight, focusedDark, uTheme);
+
+//     // ---------------------------------------
+//     // VERY SUBTLE VIGNETTE (Premium Look)
+//     // ---------------------------------------
+
+//     float vignette = smoothstep(0.8, 0.35, dist);
+//     color *= mix(1.0, vignette, 0.25 + uTheme * 0.25);
+
+//     gl_FragColor = vec4(color, 1.0);
+//   }
+// `
+
+
+// export const heroFragmentShader = `
+// precision highp float;
+
+// varying vec2 vUv;
+
+// uniform sampler2D uTexture;
+// uniform vec2 uResolution;
+// uniform vec2 uImageResolution;
+// uniform float uTheme; // 0 = light, 1 = dark
+
+// void main() {
+
+//     // ---------------------------------------
+//     // STABLE CSS-LIKE COVER (NO DISTORTION)
+//     // ---------------------------------------
+//     float screenRatio = uResolution.x / uResolution.y;
+//     float imageRatio  = uImageResolution.x / uImageResolution.y;
+
+//     vec2 newUV = vUv;
+
+//     if (screenRatio < imageRatio) {
+//         // Screen narrower → crop horizontally
+//         float scale = imageRatio / screenRatio;
+//         newUV.x = (vUv.x - 0.5) * scale + 0.5;
+//     } else {
+//         // Screen wider → crop vertically
+//         float scale = screenRatio / imageRatio;
+//         newUV.y = (vUv.y - 0.5) * scale + 0.5;
+//     }
+
+//     // 🚫 DO NOT CLAMP HERE
+
+//     vec3 color = texture2D(uTexture, newUV).rgb;
+
+//     // ---------------------------------------
+//     // LIGHT MODE READABILITY COMPENSATION
+//     // ---------------------------------------
+
+//     float luminance = dot(color, vec3(0.299, 0.587, 0.114));
+//     vec3 desaturated = mix(color, vec3(luminance), 0.15);
+//     vec3 brightened = desaturated * 1.08;
+//     brightened = mix(vec3(0.5), brightened, 0.92);
+
+//     // ---------------------------------------
+//     // DARK MODE
+//     // ---------------------------------------
+
+//     vec3 darkened = color * 0.6;
+
+//     color = mix(brightened, darkened, uTheme);
+
+//     // ---------------------------------------
+//     // CENTER TEXT FOCUS BOOST
+//     // ---------------------------------------
+
+//     float focus = 1.0 - smoothstep(0.2, 0.75, distance(vUv, vec2(0.5)));
+//     color = mix(color, color * 0.85, focus * (1.0 - uTheme) * 0.4);
+
+//     gl_FragColor = vec4(color, 1.0);
+// }
+// `;
+
+
+
+
 // export const heroFragmentShader = `
 // precision highp float;
 
@@ -126,61 +329,124 @@ export const heroVertexShader = `
 //   gl_FragColor = texture2D(uTexture, vUv);
 // }
 // `;
+// export const heroFragmentShader = `
+// precision highp float;
 
-export const heroFragmentShader = `
-precision highp float;
+// varying vec2 vUv;
 
-varying vec2 vUv;
+// uniform sampler2D uTexture;
+// uniform vec2 uResolution;
+// uniform vec2 uImageResolution;
+// uniform float uTheme; // 0 = light, 1 = dark
 
-uniform sampler2D uTexture;
-uniform vec2 uResolution;
-uniform vec2 uImageResolution;
-uniform float uTheme; // 0 = light, 1 = dark
+// void main() {
 
-void main() {
+//     // ---------------------------------------
+//     // TRUE CSS BACKGROUND-SIZE: COVER
+//     // ---------------------------------------
 
-  vec2 uv = vUv;
+//     float screenRatio = uResolution.x / uResolution.y;
+//     float imageRatio  = uImageResolution.x / uImageResolution.y;
 
-  // -------------------------------------------------
-  // TILE IN X AXIS
-  // -------------------------------------------------
-  uv.x = fract(uv.x * 1.0); // change 1.0 to control tiling amount
+//     vec2 newUV = vUv;
 
-  // -------------------------------------------------
-  // COVER BEHAVIOR (vertical crop only)
-  // -------------------------------------------------
-  float screenRatio = uResolution.x / uResolution.y;
-  float imageRatio  = uImageResolution.x / uImageResolution.y;
+//     if (screenRatio > imageRatio) {
+//         // Screen wider → crop vertically
+//         float scale = screenRatio / imageRatio;
+//         newUV.y = (vUv.y - 0.5) * scale + 0.5;
+//     } else {
+//         // Screen taller/narrower → crop horizontally
+//         float scale = imageRatio / screenRatio;
+//         newUV.x = (vUv.x - 0.5) * scale + 0.5;
+//     }
 
-  vec2 newUV = uv;
+//     // Prevent edge bleeding
+//     newUV = clamp(newUV, 0.0, 1.0);
 
-  if (screenRatio < imageRatio) {
-      float scale = imageRatio / screenRatio;
-      newUV.y = (uv.y - 0.5) * scale + 0.5;
-  }
+//     vec3 color = texture2D(uTexture, newUV).rgb;
 
-  vec3 color = texture2D(uTexture, newUV).rgb;
+//     // ---------------------------------------
+//     // LIGHT MODE READABILITY COMPENSATION
+//     // ---------------------------------------
 
-  // -------------------------------------------------
-  // STRONG LIGHT / DARK COMPENSATION
-  // -------------------------------------------------
+//     float luminance = dot(color, vec3(0.299, 0.587, 0.114));
+//     vec3 desaturated = mix(color, vec3(luminance), 0.15);
+//     vec3 brightened = desaturated * 1.08;
+//     brightened = mix(vec3(0.5), brightened, 0.92);
 
-  // Dark mode → cinematic darkening
-  vec3 darkened = color * 0.55;
+//     // ---------------------------------------
+//     // DARK MODE
+//     // ---------------------------------------
 
-  // Light mode → strong soft white overlay
-  vec3 lightened = mix(color, vec3(1.0), 0.25);
+//     vec3 darkened = color * 0.6;
 
-  color = mix(lightened, darkened, uTheme);
+//     color = mix(brightened, darkened, uTheme);
 
-  // -------------------------------------------------
-  // Center readability boost (radial light focus)
-  // -------------------------------------------------
-  float center = 1.0 - smoothstep(0.0, 0.6, distance(vUv, vec2(0.5)));
-  color += center * (1.0 - uTheme) * 0.15;
+//     // ---------------------------------------
+//     // CENTER TEXT FOCUS BOOST
+//     // ---------------------------------------
 
-  gl_FragColor = vec4(color, 1.0);
-}`
+//     float focus = 1.0 - smoothstep(0.2, 0.75, distance(vUv, vec2(0.5)));
+//     color = mix(color, color * 0.85, focus * (1.0 - uTheme) * 0.4);
+
+//     gl_FragColor = vec4(color, 1.0);
+// }
+// `;
+
+// export const heroFragmentShader = `
+// precision highp float;
+
+// varying vec2 vUv;
+
+// uniform sampler2D uTexture;
+// uniform vec2 uResolution;
+// uniform vec2 uImageResolution;
+// uniform float uTheme; // 0 = light, 1 = dark
+
+// void main() {
+
+//   vec2 uv = vUv;
+
+//   // -------------------------------------------------
+//   // TILE IN X AXIS
+//   // -------------------------------------------------
+//   uv.x = fract(uv.x * 1.0); // change 1.0 to control tiling amount
+
+//   // -------------------------------------------------
+//   // COVER BEHAVIOR (vertical crop only)
+//   // -------------------------------------------------
+//   float screenRatio = uResolution.x / uResolution.y;
+//   float imageRatio  = uImageResolution.x / uImageResolution.y;
+
+//   vec2 newUV = uv;
+
+//   if (screenRatio < imageRatio) {
+//       float scale = imageRatio / screenRatio;
+//       newUV.y = (uv.y - 0.5) * scale + 0.5;
+//   }
+
+//   vec3 color = texture2D(uTexture, newUV).rgb;
+
+//   // -------------------------------------------------
+//   // STRONG LIGHT / DARK COMPENSATION
+//   // -------------------------------------------------
+
+//   // Dark mode → cinematic darkening
+//   vec3 darkened = color * 0.55;
+
+//   // Light mode → strong soft white overlay
+//   vec3 lightened = mix(color, vec3(1.0), 0.25);
+
+//   color = mix(lightened, darkened, uTheme);
+
+//   // -------------------------------------------------
+//   // Center readability boost (radial light focus)
+//   // -------------------------------------------------
+//   float center = 1.0 - smoothstep(0.0, 0.6, distance(vUv, vec2(0.5)));
+//   color += center * (1.0 - uTheme) * 0.15;
+
+//   gl_FragColor = vec4(color, 1.0);
+// }`
 
 // export const heroFragmentShader = `
 // precision highp float;

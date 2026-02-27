@@ -13,7 +13,7 @@ const HeroOverlay = () => {
           initial={{ opacity: 0, letterSpacing: '0.3em' }}
           animate={{ opacity: 1, letterSpacing: '0.5em' }}
           transition={{ duration: 2, delay: 0.3 }}
-          className="mb-6 font-body text-xs uppercase tracking-[0.5em] text-primary/70"
+          className="mb-6 font-body font-extrabold text-xs uppercase tracking-[0.5em] text-primary/70"
         >
           Premium Art Gallery
         </motion.p>
@@ -36,7 +36,7 @@ const HeroOverlay = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
-          className="mt-8 max-w-md font-body text-sm leading-relaxed text-muted-foreground"
+          className="mt-8 max-w-md font-body text-sm leading-relaxed text-foreground"
         >
           From striking contemporary masterpieces to refined modern expressions, our gallery celebrates art that inspires, elevates, and endures. Discover investment-worthy paintings in an intimate, sophisticated setting designed for those who value rarity, authenticity, and uncompromising quality.
         </motion.p>
