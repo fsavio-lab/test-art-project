@@ -40,8 +40,9 @@ const Navigation = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
-        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
-          }`}
+        className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 bg-background/80 backdrop-blur-md shadow-warm`}
+        // className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
+        //   }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
           <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
