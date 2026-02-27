@@ -15,6 +15,7 @@ export interface Artist {
   awards: string[];
   socialLinks: { platform: string; url: string }[];
   featuredWorks: string[];
+  isFeatured: boolean
 }
 
 export const artists: Artist[] = [
@@ -32,6 +33,7 @@ export const artists: Artist[] = [
       { platform: 'Website', url: '#' },
     ],
     featuredWorks: ['1', '6'],
+    isFeatured: true
   },
   {
     id: '2',
@@ -47,6 +49,7 @@ export const artists: Artist[] = [
       { platform: 'Website', url: '#' },
     ],
     featuredWorks: ['2'],
+    isFeatured: false
   },
   {
     id: '3',
@@ -62,6 +65,7 @@ export const artists: Artist[] = [
       { platform: 'Website', url: '#' },
     ],
     featuredWorks: ['3', '8'],
+    isFeatured: false
   },
   {
     id: '4',
@@ -77,6 +81,7 @@ export const artists: Artist[] = [
       { platform: 'Website', url: '#' },
     ],
     featuredWorks: ['4', '7'],
+    isFeatured: false
   },
   {
     id: '5',
@@ -92,5 +97,6 @@ export const artists: Artist[] = [
       { platform: 'Website', url: '#' },
     ],
     featuredWorks: ['5'],
+    isFeatured: false
   },
 ];
