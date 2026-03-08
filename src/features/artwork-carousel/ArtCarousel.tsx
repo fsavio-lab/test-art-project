@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import artwork1 from '@/assets/artwork-1.jpg';
 import artwork2 from '@/assets/artwork-2.jpg';
@@ -23,11 +23,24 @@ const swipePower = (offset: number, velocity: number) => {
 
 const ArtCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(2);
+  const [isPaused, setIsPaused] = useState(false);
+
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   const isMobile = useIsMobile();
   const spacing = isMobile ? 220 : 280;
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % artworks.length);
+    }, 5500); // slower = premium gallery feel
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   return (
     <section ref={sectionRef} id="collection" className="relative z-10 py-32">
@@ -36,17 +49,16 @@ const ArtCarousel = () => {
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 1 }}
         className="mb-20 text-center"
-      >
-        <p className="mb-4 font-body text-xs uppercase tracking-[0.4em] text-primary/60">
-          Current Exhibition
-        </p>
-        <h2 className="font-display text-5xl font-light text-foreground md:text-7xl">
-          Selected Works
-        </h2>
-      </motion.div>
+      />
 
       {/* 3D Carousel */}
-      <div className="relative mx-auto flex h-125 max-w-6xl items-center justify-center overflow-hidden">
+      <div
+        className="relative mx-auto flex h-125 max-w-6xl items-center justify-center overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
         {artworks.map((artwork, index) => {
           const offset = index - activeIndex;
           const absOffset = Math.abs(offset);
@@ -59,7 +71,10 @@ const ArtCarousel = () => {
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}
+              onDragStart={() => setIsPaused(true)}
               onDragEnd={(e, { offset, velocity }) => {
+                setIsPaused(false);
+
                 const swipe = swipePower(offset.x, velocity.x);
 
                 if (
