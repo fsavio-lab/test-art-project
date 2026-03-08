@@ -47,16 +47,19 @@ const Navigation = () => {
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3">
           <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
-            <img
+            <div className='flex items-center'><img
               src={indiaFineArtLogo}
               alt="India Fine Art Logo"
-              className="h-16 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="h-full w-16 transition-transform duration-700 group-hover:scale-105"
 
             />
+              <h1 className=''>
+                INDIA FINE ART
+              </h1></div>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-10 md:flex">
+          <div className="hidden items-center gap-10 lg:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -93,7 +96,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile controls */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 lg:hidden">
             <Link to="/cart" className="relative text-muted-foreground" aria-label="Shopping cart">
               <ShoppingBag size={18} />
               {itemCount > 0 && (
