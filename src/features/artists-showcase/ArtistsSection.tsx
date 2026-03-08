@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import { artists, type Artist } from '@/features/shared/data/artists';
+import { Link } from 'react-router-dom';
 
 // ── Artist Card ───────────────────────────────────────────────────────────────
 
@@ -119,9 +120,9 @@ const ArtistsSection = () => (
     carouselHeight={480}
     renderCard={(artist, isActive, absOffset) => {
       return isActive === true ?
-        (<a href={`/artists/${artist.id}`}>
+        (<Link key={artist.id} to={`/artists/${artist.id}`}>
           <ArtistCard artist={artist} isActive={isActive} absOffset={absOffset} />
-          </a>) :
+          </Link>) :
         (<><ArtistCard artist={artist} isActive={isActive} absOffset={absOffset} /></>)
     }
     }

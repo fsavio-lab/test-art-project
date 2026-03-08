@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import { fineArtPaintings, type Painting } from '@/features/shared/data/paintings';
 import { Link } from 'react-router-dom';
-import PaintingCard from '../marketplace/PaintingCard';
 
 // ── Availability badge ────────────────────────────────────────────────────────
 
@@ -128,9 +127,9 @@ const FineArtSection = () => (
     carouselHeight={480}
     renderCard={(painting, isActive, absOffset) => {
       return isActive === true ?
-        (<a href={`/marketplace/${painting.id}`}>
+        (<Link key={painting.id} to={`/marketplace/${painting.id}`}>
           <FineArtCard painting={painting} isActive={isActive} absOffset={absOffset} />
-          </a>) :
+          </Link>) :
         (<><FineArtCard painting={painting} isActive={isActive} absOffset={absOffset} /></>)
     }}/>
 );

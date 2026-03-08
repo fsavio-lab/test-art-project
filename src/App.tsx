@@ -8,6 +8,7 @@ import { CartProvider } from "@/features/shared/context/CartContext";
 import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const Marketplace = lazy(() => import("./pages/Marketplace"));
 const ArtDetail = lazy(() => import("./pages/ArtDetail"));
@@ -36,6 +37,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Suspense fallback={<PageFallback />}>
               <Routes>
                 <Route path="/" element={<Index />} />
