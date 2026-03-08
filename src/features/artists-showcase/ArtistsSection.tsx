@@ -119,7 +119,7 @@ const ArtistsSection = () => (
     carouselHeight={480}
     renderCard={(artist, isActive, absOffset) => {
       return isActive === true ?
-        (<a href={`artists/${artist.id}`}>
+        (<a href={`/artists/${artist.id}`}>
           <ArtistCard artist={artist} isActive={isActive} absOffset={absOffset} />
           </a>) :
         (<><ArtistCard artist={artist} isActive={isActive} absOffset={absOffset} /></>)

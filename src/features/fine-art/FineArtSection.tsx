@@ -128,7 +128,7 @@ const FineArtSection = () => (
     carouselHeight={480}
     renderCard={(painting, isActive, absOffset) => {
       return isActive === true ?
-        (<a href={`marketplace/${painting.id}`}>
+        (<a href={`/marketplace/${painting.id}`}>
           <FineArtCard painting={painting} isActive={isActive} absOffset={absOffset} />
           </a>) :
         (<><FineArtCard painting={painting} isActive={isActive} absOffset={absOffset} /></>)

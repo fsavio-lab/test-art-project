@@ -163,7 +163,7 @@ const PrintsSection = () => (
     carouselHeight={480}
     renderCard={(painting, isActive, absOffset) => {
       return isActive === true ?
-        (<a href={`marketplace/${painting.id}`}>
+        (<a href={`/marketplace/${painting.id}`}>
           <PrintCard painting={painting} isActive={isActive} absOffset={absOffset} />
           </a>) :
         (<><PrintCard painting={painting} isActive={isActive} absOffset={absOffset} /></>)
