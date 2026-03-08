@@ -46,14 +46,14 @@ const Navigation = () => {
       //   }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3">
-          <Link to="/" className="font-display text-xl font-light tracking-wider text-foreground">
+          <Link to="/" className="font-display text-lg md:text-xl  font-light tracking-wider text-foreground">
             <div className='flex items-center'><img
               src={indiaFineArtLogo}
               alt="India Fine Art Logo"
               className="h-full w-16 transition-transform duration-700 group-hover:scale-105"
 
             />
-              <h1 className=''>
+              <h1>
                 INDIA FINE ART
               </h1></div>
           </Link>

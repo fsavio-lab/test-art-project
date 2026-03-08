@@ -15,6 +15,7 @@ export interface Artist {
   totalWorks: number;
   yearsActive: string;
   awards?: Array<string>;
+  isFeatured?: boolean;
 }
 
 export const artists: Artist[] = [
@@ -29,6 +30,7 @@ export const artists: Artist[] = [
     totalWorks: 2,
     yearsActive: '2008 – Present',
     awards: ['National Crafts Award 2019'],
+    isFeatured: true
   },
   {
     id: '2',
@@ -41,6 +43,7 @@ export const artists: Artist[] = [
     totalWorks: 1,
     yearsActive: '1975 – Present',
     awards: ['Padma Shri 2011'],
+    isFeatured: true
   },
   {
     id: '3',
@@ -52,6 +55,7 @@ export const artists: Artist[] = [
     styles: ['Pattachitra', 'Gond Art'],
     totalWorks: 2,
     yearsActive: '1995 – Present',
+    isFeatured: false
   },
   {
     id: '4',
@@ -64,6 +68,7 @@ export const artists: Artist[] = [
     totalWorks: 2,
     yearsActive: '2001 – Present',
     awards: ['Rajasthan Lalit Kala Akademi Award 2017'],
+    isFeatured: true
   },
   {
     id: '5',
@@ -76,5 +81,6 @@ export const artists: Artist[] = [
     totalWorks: 1,
     yearsActive: '1998 – Present',
     awards: ['Bihar Ratna Award 2020'],
+    isFeatured: true
   },
 ];
