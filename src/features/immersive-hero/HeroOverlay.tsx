@@ -26,32 +26,32 @@ const HeroOverlay = () => {
           <span className="block">India</span>
           <span className="block text-gradient-gold italic">Fine Art</span>
         </motion.h1>
-        <motion.div
+        {/* <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, delay: 1.2 }}
           className="mx-auto mt-8 h-px w-32 bg-primary/40"
-        />
-        <motion.p
+        /> */}
+        {/* <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.5 }}
           className="mt-8 max-w-md font-body text-sm leading-relaxed text-foreground"
         >
           From striking contemporary masterpieces to refined modern expressions, our gallery celebrates art that inspires, elevates, and endures. Discover investment-worthy paintings in an intimate, sophisticated setting designed for those who value rarity, authenticity, and uncompromising quality.
-        </motion.p>
+        </motion.p> */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2 }}
           className="mt-12"
         >
-          <a
+          {/* <a
             href="/marketplace"
             className="inline-block border border-primary/30 px-8 py-3 font-body text-xs uppercase tracking-[0.3em] text-primary transition-all duration-500 hover:border-primary/60 hover:bg-primary/5"
           >
             Enter Marketplace
-          </a>
+          </a> */}
         </motion.div>
       </motion.div>
 
