@@ -147,7 +147,7 @@ const Artists = () => {
             >
               <div className="aspect-square overflow-hidden">
                 <img
-                  src={artist.portrait}
+                  src={artist.image}
                   alt={artist.name}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -159,7 +159,7 @@ const Artists = () => {
                   {artist.name}
                 </h3>
                 <p className="mt-1 font-body text-xs uppercase tracking-[0.2em] text-primary/60">
-                  {artist.specialization}
+                  {artist.speciality}
                 </p>
                 <p className="mt-3 line-clamp-2 font-body text-xs leading-relaxed text-muted-foreground">
                   {artist.bio}
