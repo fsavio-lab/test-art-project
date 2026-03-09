@@ -1,25 +1,31 @@
+import { motion } from 'framer-motion';
 import MarketplaceGrid from '@/features/marketplace/MarketplaceGrid';
 import Navigation from '@/features/navigation/Navigation';
+import PageHeader from '@/components/PageHeader';
 
-const Prints = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <main className="mx-auto max-w-7xl px-6 pb-20 pt-32">
-        <div className="mb-16">
-          <p className="mb-3 font-body text-xs uppercase tracking-[0.4em] text-primary/60">Reproductions</p>
-          <h1 className="font-display text-6xl font-light text-foreground md:text-7xl">
-            Fine Art Prints
-          </h1>
-          <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-muted-foreground">
-            Museum-quality reproductions for modern spaces
-          </p>
-          <div className="mt-8 h-px w-24 bg-primary/30" />
-        </div>
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const Prints = () => (
+  <div className="min-h-screen bg-background">
+    <Navigation />
+
+    <main className="mx-auto max-w-7xl px-6 pb-20 pt-32">
+      <PageHeader
+        eyebrow="Reproductions"
+        title="Fine Art Prints"
+        subtitle="Museum-quality reproductions for modern spaces."
+        ruleWidth="w-24"
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.85, ease: EASE, delay: 0.55 }}
+      >
         <MarketplaceGrid categoryFilter="prints" />
-      </main>
-    </div>
-  );
-};
+      </motion.div>
+    </main>
+  </div>
+);
 
 export default Prints;
