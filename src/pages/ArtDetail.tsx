@@ -306,7 +306,7 @@ const ArtDetail = () => {
         )}
 
         {/* ── Reviews — scroll-triggered ────────────────────────────────── */}
-        <section ref={reviewsRef} className="mt-20 border-t border-border pt-12">
+        {/* <section ref={reviewsRef} className="mt-20 border-t border-border pt-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
@@ -340,7 +340,7 @@ const ArtDetail = () => {
               </motion.div>
             ))}
           </motion.div>
-        </section>
+        </section> */}
 
         {/* ── Related works — scroll-triggered ──────────────────────────── */}
         {related.length > 0 && (
