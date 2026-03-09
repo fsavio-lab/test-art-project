@@ -153,11 +153,11 @@ const PrintsSection = () => (
     eyebrow="Editions & Prints"
     title={
       <>
-        Limited
+        Abstract
         <span className="block italic text-gradient-gold">Editions</span>
       </>
     }
-    subtitle="Museum-quality reproductions with the soul of the original — archival inks, handmade papers, and gold-ink detailing. Each edition is individually signed and certified."
+    // subtitle="Museum-quality reproductions with the soul of the original — archival inks, handmade papers, and gold-ink detailing. Each edition is individually signed and certified."
     autoplayInterval={6500}
     cardWidth={290}
     carouselHeight={480}

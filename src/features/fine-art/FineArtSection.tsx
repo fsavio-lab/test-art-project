@@ -26,7 +26,7 @@ const FineArtCard = ({ painting, isActive, absOffset }: PaintingCardProps) => {
       <div
         className={`group relative overflow-hidden transition-shadow duration-700 ${isActive ? 'glow-gold' : ''
           }`}
-        style={{ width: 300 }}
+        style={{ width: 400 }}
       >
         {/* Artwork image */}
         <div className="relative h-96 w-full overflow-hidden">
@@ -121,9 +121,9 @@ const FineArtSection = () => (
         <span className="block italic text-gradient-gold">Collection</span>
       </>
     }
-    subtitle="Singular originals in India's most revered traditions — each work a unique artefact of culture, technique, and devotion."
+    // subtitle="Singular originals in India's most revered traditions — each work a unique artefact of culture, technique, and devotion."
     autoplayInterval={5500}
-    cardWidth={300}
+    cardWidth={360}
     carouselHeight={480}
     renderCard={(painting, isActive, absOffset) => {
       return isActive === true ?

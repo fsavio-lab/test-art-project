@@ -26,8 +26,7 @@ const Index = () => {
       {/* ── Scrollable content ─────────────────────────────────────────────── */}
       <div className="relative z-10 bg-linear-to-b from-transparent via-background/95 to-background">
 
-        {/* Featured picks — original ArtCarousel (hero carousel) */}
-        {/* <ArtCarousel /> */}
+        
 
         {/* Artists — meet the makers */}
         <div className="bg-section-alt">
@@ -35,7 +34,11 @@ const Index = () => {
         </div>
 
         {/* Fine Art originals */}
-        <FineArtSection />
+         <div className="bg-background/70">
+          <FineArtSection />
+        </div>
+
+        
 
         {/* Limited edition prints */}
         <div className="bg-section-alt">

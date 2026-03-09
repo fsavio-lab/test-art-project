@@ -15,7 +15,7 @@ const ArtistCard = ({ artist, isActive, absOffset }: ArtistCardProps) => (
   <div
     className={`group relative overflow-hidden transition-shadow duration-700 ${isActive ? 'glow-gold' : ''
       }`}
-    style={{ width: 280 }}
+    style={{ width: 400 }}
   >
     {/* Portrait */}
     <div className="relative h-96 w-full overflow-hidden">
@@ -110,13 +110,13 @@ const ArtistsSection = () => (
     eyebrow="The Makers"
     title={
       <>
-        Meet the
-        <span className="block italic text-gradient-gold">Artists</span>
+        <div className='flex flex-row justify-center'>
+           <p>Contemporary</p>  <p className='italic text-gradient-gold ps-4'>Art</p>
+        </div>
       </>
     }
-    subtitle="Five masters whose lives are devoted to living traditions — from Tamil Nadu's gold-leaf ateliers to Odisha's painted scroll villages."
     autoplayInterval={6000}
-    cardWidth={280}
+    cardWidth={360}
     carouselHeight={480}
     renderCard={(artist, isActive, absOffset) => {
       return isActive === true ?

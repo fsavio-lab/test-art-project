@@ -34,7 +34,7 @@ const ContactSection = () => {
             className="mt-12"
           >
             <a
-              href="mailto:info@indiafineart.com"
+              href="mailto:tanveerbhomer@gmail.com"
               className="inline-block border border-primary/30 px-10 py-4 font-body text-xs uppercase tracking-[0.3em] text-primary transition-all duration-500 hover:border-primary/60 hover:bg-primary/5"
             >
               Schedule a Visit
@@ -72,18 +72,18 @@ const ContactSection = () => {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
-                <p className="font-body text-sm text-foreground">42 MG Road, Fort, Mumbai 400001, India</p>
+                <p className="font-body text-sm text-foreground">India Fine Art, 3rd Floor, Film Center Bldg, 68 Tardeo Road, Mumbai - 400034</p>
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
-                <a href="tel:+912222047890" className="font-body text-sm text-foreground transition-colors hover:text-primary">
-                  +91 22 2204 7890
+                <a href="tel:+919699251555" className="font-body text-sm text-foreground transition-colors hover:text-primary">
+                  +91 9699851555
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <Mail size={16} className="mt-0.5 flex-shrink-0 text-primary" aria-hidden="true" />
-                <a href="mailto:info@indiafineart.com" className="font-body text-sm text-foreground transition-colors hover:text-primary">
-                  info@indiafineart.com
+                <a href="mailto:tanveerbhomer@gmail.com" className="font-body text-sm text-foreground transition-colors hover:text-primary">
+                  tanveerbhomer@gmail.com
                 </a>
               </div>
               <div className="flex items-start gap-3">
