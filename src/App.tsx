@@ -20,6 +20,7 @@ const Artists = lazy(() => import("./pages/Artists"));
 const ArtistProfile = lazy(() => import("./pages/ArtistProfile"));
 const FineArt = lazy(() => import("./pages/FineArt"));
 const Prints = lazy(() => import("./pages/Prints"));
+const SearchResults = lazy(() => import("./pages/SearchResults"));
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
                 <Route path="/about" element={<About />} />
                 <Route path="/artists" element={<Artists />} />
                 <Route path="/artists/:id" element={<ArtistProfile />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

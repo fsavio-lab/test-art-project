@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Sun, Moon, Search, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/features/shared/context/CartContext';
 import indiaFineArtLogo from '@/assets/logo/android-chrome-192x192.png';
-import { Button } from '@/components/ui/button';
+import SearchDialog from '@/features/search/SearchDialog';
 
 const navLinks = [
   { label: 'Marketplace', href: '/marketplace' },
@@ -18,8 +18,9 @@ const navLinks = [
 ];
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+ const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const location = useLocation();
@@ -32,10 +33,29 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    setSearchOpen(false);
   }, [location.pathname]);
 
+  // Global keyboard shortcut: Cmd/Ctrl+K opens search
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen((o) => !o);
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const handleSearchOpen = () => {
+    setSearchOpen(true);
+    setMenuOpen(false);
+  };
   return (
     <>
       <motion.header
@@ -73,8 +93,10 @@ const Navigation = () => {
                   }`} />
               </Link>
             ))}
+
+            {/* Search */}
             <button
-              onClick={() => { }}
+              onClick={handleSearchOpen}
               className="text-muted-foreground"
               aria-label="Search"
             >
@@ -107,7 +129,7 @@ const Navigation = () => {
           {/* Mobile controls */}
           <div className="flex items-center gap-4 lg:hidden">
             <button
-              onClick={() => { }}
+              onClick={handleSearchOpen}
               className="text-muted-foreground"
               aria-label="Search"
             >
@@ -204,6 +226,8 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
+       {/* ── Search dialog ────────────────────────────────────────────── */}
+      <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 };
