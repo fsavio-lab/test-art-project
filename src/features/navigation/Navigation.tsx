@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, ShoppingBag } from 'lucide-react';
+import { Sun, Moon, Search, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/features/shared/context/CartContext';
 import indiaFineArtLogo from '@/assets/logo/android-chrome-192x192.png';
+import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { label: 'Marketplace', href: '/marketplace' },
@@ -72,6 +73,14 @@ const Navigation = () => {
                   }`} />
               </Link>
             ))}
+            <button
+              onClick={() => { }}
+              className="text-muted-foreground"
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+
 
             {/* Cart */}
             <Link to="/cart" className="relative text-muted-foreground transition-colors hover:text-foreground" aria-label="Shopping cart">
@@ -84,7 +93,7 @@ const Navigation = () => {
             </Link>
 
             {/* Theme toggle */}
-            {mounted && (
+            {/* {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="rounded-full p-2 text-muted-foreground transition-colors duration-300 hover:text-foreground"
@@ -92,20 +101,27 @@ const Navigation = () => {
               >
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
-            )}
+            )} */}
           </div>
 
           {/* Mobile controls */}
           <div className="flex items-center gap-4 lg:hidden">
-            <Link to="/cart" className="relative text-muted-foreground" aria-label="Shopping cart">
+            <button
+              onClick={() => { }}
+              className="text-muted-foreground"
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+            <Link to="/cart" className="relative text-muted-foreground px-2" aria-label="Shopping cart">
               <ShoppingBag size={18} />
               {itemCount > 0 && (
-                <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-medium text-primary-foreground">
+                <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-medium text-primary-foreground mx-2">
                   {itemCount}
                 </span>
               )}
             </Link>
-            {mounted && (
+            {/* {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="p-2 text-muted-foreground"
@@ -113,7 +129,7 @@ const Navigation = () => {
               >
                 {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
-            )}
+            )} */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="relative flex h-6 w-6 items-center justify-center"
