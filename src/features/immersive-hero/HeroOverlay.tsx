@@ -27,14 +27,14 @@ const MiniCard = ({ painting, isActive, onClick }: MiniCardProps) => (
         onClick();
       }
     }}
-    className="group relative flex-shrink-0 overflow-hidden"
+    className="group relative shrink-0 overflow-hidden"
     style={{
       width: isActive ? 220 : 140,
       transition: 'width 560ms cubic-bezier(0.16, 1, 0.3, 1)',
     }}
   >
     {/* Image */}
-    <div className="relative h-[168px] w-full overflow-hidden">
+    <div className="relative h-42ll overflow-hidden">
       <img
         src={painting.image}
         alt={painting.title}
@@ -47,7 +47,7 @@ const MiniCard = ({ painting, isActive, onClick }: MiniCardProps) => (
       />
 
       {/* Bottom gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent" />
 
       {/* Active glow border */}
       <div
@@ -303,7 +303,7 @@ const HeroOverlay = () => {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full pb-8"
+          className="relative mx-auto w-full max-w-7xl pb-8"
         >
           <HeroPaintingCarousel />
           {/* Top separator */}
