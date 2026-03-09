@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import { printPaintings, type Painting } from '@/features/shared/data/paintings';
 import { Link } from 'react-router-dom';
+import { useCardWidth} from '@/hooks/use-card-dimensions';
 
 // ── Edition pill ──────────────────────────────────────────────────────────────
 
@@ -26,6 +27,7 @@ interface PrintCardProps {
 }
 
 const PrintCard = ({ painting, isActive, absOffset }: PrintCardProps) => {
+  const cardWidth = useCardWidth();
   const pillClass =
     painting.edition && editionColor[painting.edition as keyof typeof editionColor]
       ? editionColor[painting.edition as keyof typeof editionColor]
@@ -38,7 +40,7 @@ const PrintCard = ({ painting, isActive, absOffset }: PrintCardProps) => {
     <div
       className={`group relative overflow-hidden transition-shadow duration-700 ${isActive ? 'glow-gold' : ''
         }`}
-      style={{ width: 290 }}
+      style={{ width: cardWidth}}
     >
       {/* Print image */}
       <div className="relative h-96 w-full overflow-hidden">
@@ -146,30 +148,33 @@ const PrintCard = ({ painting, isActive, absOffset }: PrintCardProps) => {
 
 // ── Section ───────────────────────────────────────────────────────────────────
 
-const PrintsSection = () => (
-  <GalleryCarousel<Painting>
-    items={printPaintings}
-    sectionId="prints"
-    eyebrow="Editions & Prints"
-    title={
-      <>
-        Abstract
-        <span className="block italic text-gradient-gold">Editions</span>
-      </>
-    }
-    // subtitle="Museum-quality reproductions with the soul of the original — archival inks, handmade papers, and gold-ink detailing. Each edition is individually signed and certified."
-    autoplayInterval={6500}
-    cardWidth={290}
-    carouselHeight={480}
-    renderCard={(painting, isActive, absOffset) => {
-      return isActive === true ?
-        (<Link key={painting.id
-        } to={`/marketplace/${painting.id}`}>
-          <PrintCard painting={painting} isActive={isActive} absOffset={absOffset} />
-        </Link>) :
-        (<><PrintCard painting={painting} isActive={isActive} absOffset={absOffset} /></>)
-    }}
-  />
-);
+const PrintsSection = () => {
+  const cardWidth = useCardWidth();
+  return (
+    <GalleryCarousel<Painting>
+      items={printPaintings}
+      sectionId="prints"
+      eyebrow="Editions & Prints"
+      title={
+        <>
+          Abstract
+          <span className="block italic text-gradient-gold">Editions</span>
+        </>
+      }
+      // subtitle="Museum-quality reproductions with the soul of the original — archival inks, handmade papers, and gold-ink detailing. Each edition is individually signed and certified."
+      autoplayInterval={6500}
+      cardWidth={cardWidth}
+      carouselHeight={480}
+      renderCard={(painting, isActive, absOffset) => {
+        return isActive === true ?
+          (<Link key={painting.id
+          } to={`/marketplace/${painting.id}`}>
+            <PrintCard painting={painting} isActive={isActive} absOffset={absOffset} />
+          </Link>) :
+          (<><PrintCard painting={painting} isActive={isActive} absOffset={absOffset} /></>)
+      }}
+    />
+  )
+};
 
 export default PrintsSection;
