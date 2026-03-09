@@ -46,7 +46,7 @@ const Navigation = () => {
       // className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-background/80 backdrop-blur-md shadow-warm' : ''
       //   }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-3">
           <Link to="/" className="font-display text-lg md:text-xl  font-light tracking-wider text-foreground">
             <div className='flex items-center'><img
               src={indiaFineArtLogo}

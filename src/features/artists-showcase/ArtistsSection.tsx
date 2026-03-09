@@ -115,9 +115,7 @@ const ArtistsSection = () => (
     eyebrow="The Makers"
     title={
       <>
-        <div className='flex flex-row justify-center'>
-          <p>Contemporary</p>  <p className='italic text-gradient-gold ps-4'>Art</p>
-        </div>
+        Contemporary  <span className='italic text-gradient-gold ps-4'>Art</span>
       </>
     }
     autoplayInterval={6000}

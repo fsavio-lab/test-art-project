@@ -8,15 +8,17 @@ import FineArtSection from '@/features/fine-art/FineArtSection';
 import PrintsSection from '@/features/prints/PrintsSection';
 import AboutSection from '@/features/about/AboutSection';
 import ContactSection from '@/features/contact/ContactSection';
+import StaticHeroCanvas from '@/features/immersive-hero/StaticHeroCanvas';
+
 
 const Index = () => {
   return (
     <div className="relative min-h-screen bg-background">
       {/* WebGL Background */}
-      <Suspense fallback={<div className="fixed inset-0 z-0 bg-background" />}>
+      {/* <Suspense fallback={<div className="fixed inset-0 z-0 bg-background" />}>
         <HeroCanvas />
-      </Suspense>
-
+      </Suspense> */}
+      <StaticHeroCanvas />
       {/* Grain overlay */}
       <div className="grain-overlay fixed inset-0 z-1 pointer-events-none" />
 
