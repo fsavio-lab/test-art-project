@@ -10,7 +10,7 @@ import SearchDialog from '@/features/search/SearchDialog';
 const navLinks = [
   { label: 'Marketplace', href: '/marketplace' },
   { label: 'Exhibitions', href: '/exhibitions' },
-  { label: 'Prints', href: '/prints' },
+  { label: 'Editions', href: '/editions' },
   { label: 'Fine Art', href: '/fine_art' },
   { label: 'Artists', href: '/artists' },
   { label: 'About', href: '/about' },
