@@ -82,15 +82,16 @@ const Navigation = () => {
             to="/"
             className="relative flex items-center justify-center font-display text-lg md:text-xl font-light tracking-wider text-foreground w-40 pb-2"
           >
+            <h1 className="underline z-0 underline-offset-4 pt-4">
+              INDIA FINE ART
+            </h1>
             <img
               src={indiaFineArtLogo}
               alt="India Fine Art Logo"
-              className="w-15 "
+              className=" absolute w-15 z-10"
             />
 
-            <h1 className="absolute z-10 underline underline-offset-4 pt-4">
-              INDIA FINE ART
-            </h1>
+
           </Link>
 
           {/* Desktop nav */}
