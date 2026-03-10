@@ -5,14 +5,14 @@ import PageHeader from '@/components/PageHeader';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const Prints = () => (
+const Editions = () => (
   <div className="min-h-screen bg-background">
     <Navigation />
 
     <main className="mx-auto max-w-7xl px-6 pb-20 pt-32">
       <PageHeader
         eyebrow="Reproductions"
-        title="Fine Art Prints"
+        title="Editions"
         subtitle="Museum-quality reproductions for modern spaces."
         ruleWidth="w-24"
       />
@@ -28,4 +28,4 @@ const Prints = () => (
   </div>
 );
 
-export default Prints;
+export default Editions;
