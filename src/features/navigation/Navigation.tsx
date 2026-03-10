@@ -18,7 +18,7 @@ const navLinks = [
 ];
 
 const Navigation = () => {
- const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -67,7 +67,7 @@ const Navigation = () => {
       //   }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-8 py-3">
-          <Link to="/" className="font-display text-lg md:text-xl  font-light tracking-wider text-foreground">
+          {/* <Link to="/" className="font-display text-lg md:text-xl  font-light tracking-wider text-foreground">
             <div className='flex items-center'><img
               src={indiaFineArtLogo}
               alt="India Fine Art Logo"
@@ -77,6 +77,20 @@ const Navigation = () => {
               <h1>
                 INDIA FINE ART
               </h1></div>
+          </Link> */}
+          <Link
+            to="/"
+            className="relative flex items-center justify-center font-display text-lg md:text-xl font-light tracking-wider text-foreground w-40 pb-2"
+          >
+            <img
+              src={indiaFineArtLogo}
+              alt="India Fine Art Logo"
+              className="w-15 "
+            />
+
+            <h1 className="absolute z-10 underline underline-offset-4 pt-4">
+              INDIA FINE ART
+            </h1>
           </Link>
 
           {/* Desktop nav */}
@@ -226,7 +240,7 @@ const Navigation = () => {
           </motion.div>
         )}
       </AnimatePresence>
-       {/* ── Search dialog ────────────────────────────────────────────── */}
+      {/* ── Search dialog ────────────────────────────────────────────── */}
       <SearchDialog isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
