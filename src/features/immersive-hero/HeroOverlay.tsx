@@ -239,7 +239,7 @@ const HeroOverlay = () => {
   return (
     <div
       className="relative z-10 flex flex-col"
-      style={{ height: '100svh', maxHeight: '768px' }}
+      style={{ height: '800px' }}
     >
       {/* ── Main hero copy ─────────────────────────────────────────────── */}
       <motion.div
